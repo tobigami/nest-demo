@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
 import { StudentsModule } from './modules/students/students.module';
+import { Student } from 'src/modules/students/student.entity';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { StudentsModule } from './modules/students/students.module';
       username: 'root',
       password: '1234',
       database: 'dev',
-      entities: [],
+      entities: [Student],
       logging: true,
       retryAttempts: 3,
       retryDelay: 3000,
