@@ -9,6 +9,8 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { CreateStudentDto } from 'src/modules/students/dto/create.students.dto';
+import { UpdateStudentDto } from 'src/modules/students/dto/update.students.dto';
 import { Student } from 'src/modules/students/student.entity';
 import { StudentsService } from 'src/modules/students/students.service';
 
@@ -22,23 +24,20 @@ export class StudentsController {
   }
 
   @Post('create')
-  createStudent(@Body() body: Partial<Student>): Promise<Student> {
+  createStudent(@Body() body: CreateStudentDto): Promise<Student> {
     return this.studentsService.createStudent(body);
   }
 
   @Put(':id')
   updatePutStudent(
     @Param('id') id: string,
-    @Body() body: Partial<Student>, // Changed from @Body('body')
+    @Body() body: UpdateStudentDto,
   ): Promise<Student | null> {
-    console.log('id', id);
-    console.log('body :>> ', body);
-
     return this.studentsService.updatePutStudent(+id, body);
   }
 
   @Patch(':id')
-  updatePatchStudent(@Param('id') id: string, @Body() body: Partial<Student>) {
+  updatePatchStudent(@Param('id') id: string, @Body() body: UpdateStudentDto) {
     return this.studentsService.updatePatchStudent(+id, body);
   }
 
