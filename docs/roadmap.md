@@ -12,13 +12,13 @@ NestJS là một framework để xây dựng các ứng dụng server-side hiệ
 
   - [x] Hiểu về kiểu dữ liệu, interface, type, decorators
   - [ ] Class và OOP trong TypeScript
-  - [ ] Generic Types
+  - [x] Generic Types
   - [x] Asynchronous Programming (Promise/Async-Await)
 
 - [ ] **Node.js cơ bản**
 
-  - [ ] Event Loop
-  - [ ] Module system
+  - [x] Event Loop
+  - [x] Module system
   - [x] NPM và quản lý package
   - [ ] Stream và Buffer
 
@@ -30,7 +30,7 @@ NestJS là một framework để xây dựng các ứng dụng server-side hiệ
 
 - [ ] **Cài đặt và thiết lập môi trường**
 
-  - [ ] Nest CLI
+  - [x] Nest CLI
   - [ ] Cấu trúc project
 
 - [ ] **Module**
@@ -48,7 +48,7 @@ NestJS là một framework để xây dựng các ứng dụng server-side hiệ
   - [ ] Response handling
   - [ ] Route parameters
   - [ ] Request body và DTOs
-  - [ ] Các HTTP methods: GET, POST, PUT, DELETE...
+  - [x] Các HTTP methods: GET, POST, PUT, DELETE...
 
 - [ ] **Providers & Services**
 
@@ -92,7 +92,7 @@ NestJS là một framework để xây dựng các ứng dụng server-side hiệ
 - [ ] **TypeORM với NestJS**
 
   - [ ] Cấu hình TypeORM
-  - [ ] Entities
+  - [x] Entities
   - [ ] Repositories
   - [ ] Transactions
   - [ ] Migrations
