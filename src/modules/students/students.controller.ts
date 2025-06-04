@@ -13,7 +13,7 @@ import {
 import { CreateStudentDto } from 'src/modules/students/dto/create.students.dto';
 import { UpdateStudentDto } from 'src/modules/students/dto/update.students.dto';
 import { StudentExistsPipe } from 'src/modules/students/pipes/student-exists.pipe';
-import { Student } from 'src/modules/students/student.entity';
+import { Students } from 'src/modules/students/student.entity';
 import { StudentsService } from 'src/modules/students/students.service';
 
 @Controller('students')
@@ -21,12 +21,12 @@ export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
   @Get('search')
-  searchStudents(@Query() query: any): Promise<Student[]> {
+  searchStudents(@Query() query: any): Promise<Students[]> {
     return this.studentsService.searchStudents(query);
   }
 
   @Post('create')
-  createStudent(@Body() body: CreateStudentDto): Promise<Student> {
+  createStudent(@Body() body: CreateStudentDto): Promise<Students> {
     return this.studentsService.createStudent(body);
   }
 
@@ -34,7 +34,7 @@ export class StudentsController {
   updatePutStudent(
     @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
     @Body() body: UpdateStudentDto,
-  ): Promise<Student> {
+  ): Promise<Students> {
     return this.studentsService.updatePutStudent(id, body);
   }
 
@@ -42,7 +42,7 @@ export class StudentsController {
   updatePatchStudent(
     @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
     @Body() body: UpdateStudentDto,
-  ): Promise<Student> {
+  ): Promise<Students> {
     return this.studentsService.updatePatchStudent(id, body);
   }
 
@@ -54,7 +54,7 @@ export class StudentsController {
   @Get(':id')
   getStudentById(
     @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
-  ): Promise<Student | null> {
+  ): Promise<Students | null> {
     return this.studentsService.getStudent(id);
   }
 }

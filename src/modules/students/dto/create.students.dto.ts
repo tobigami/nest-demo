@@ -2,8 +2,6 @@ import {
   IsBoolean,
   IsNumber,
   IsString,
-  registerDecorator,
-  ValidationOptions,
   ValidationArguments,
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -16,8 +14,6 @@ export class StartsWithUppercaseConstraint
   implements ValidatorConstraintInterface
 {
   validate(value: any, _args?: ValidationArguments): boolean {
-    console.log('_args :>> ', _args);
-
     if (typeof value !== 'string') return false;
     return (
       value.charAt(0) === value.charAt(0).toUpperCase() &&

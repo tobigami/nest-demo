@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Students {
+export class Teachers {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,7 +14,7 @@ export class Students {
   name: string;
 
   @Column()
-  age: number;
+  subject: string;
 
   @Column({ default: false })
   isActive: boolean;

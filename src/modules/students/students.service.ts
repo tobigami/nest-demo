@@ -2,13 +2,13 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateStudentDto } from 'src/modules/students/dto/create.students.dto';
 import { UpdateStudentDto } from 'src/modules/students/dto/update.students.dto';
-import { Student } from 'src/modules/students/student.entity';
+import { Students } from 'src/modules/students/student.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class StudentsService {
   constructor(
-    @InjectRepository(Student) private studentRepo: Repository<Student>,
+    @InjectRepository(Students) private studentRepo: Repository<Students>,
   ) {}
 
   findAll() {
@@ -19,15 +19,15 @@ export class StudentsService {
     return this.studentRepo.findOne({ where: { id } });
   }
 
-  getStudent(id?: number): Promise<Student | null> {
+  getStudent(id?: number): Promise<Students | null> {
     return this.studentRepo.findOne({ where: { id } });
   }
 
-  searchStudents(query: any): Promise<Student[]> {
+  searchStudents(query: any): Promise<Students[]> {
     return this.studentRepo.find();
   }
 
-  createStudent(body: CreateStudentDto): Promise<Student> {
+  createStudent(body: CreateStudentDto): Promise<Students> {
     const newStudent = this.studentRepo.create(body);
     return this.studentRepo.save(newStudent);
   }
@@ -36,7 +36,10 @@ export class StudentsService {
     return this.studentRepo.delete({ id });
   }
 
-  async updatePutStudent(id: number, body: UpdateStudentDto): Promise<Student> {
+  async updatePutStudent(
+    id: number,
+    body: UpdateStudentDto,
+  ): Promise<Students> {
     const student = await this.getStudent(id);
     // Thêm kiểm tra để TypeScript không báo lỗi
     if (!student) {
@@ -45,7 +48,7 @@ export class StudentsService {
     const studentId = student.id;
     const createdAt = student.createdAt;
 
-    const defaultValues: Partial<Student> = {
+    const defaultValues: Partial<Students> = {
       name: '',
       age: 0,
       isActive: false,
@@ -74,7 +77,7 @@ export class StudentsService {
   async updatePatchStudent(
     id: number,
     body: UpdateStudentDto,
-  ): Promise<Student> {
+  ): Promise<Students> {
     const student = await this.getStudent(id);
     if (!student) {
       throw new HttpException('Student not found', HttpStatus.NOT_FOUND);
