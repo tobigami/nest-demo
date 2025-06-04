@@ -33,21 +33,15 @@ export class StudentsService {
   }
 
   async deleteStudent(id: number) {
-    const student = await this.getStudent(id);
-    console.log('student :>> ', student);
-    if (!student) {
-      throw new HttpException('Student not found', HttpStatus.NOT_FOUND);
-    }
-
     return this.studentRepo.delete({ id });
   }
 
   async updatePutStudent(id: number, body: UpdateStudentDto): Promise<Student> {
     const student = await this.getStudent(id);
+    // Thêm kiểm tra để TypeScript không báo lỗi
     if (!student) {
       throw new HttpException('Student not found', HttpStatus.NOT_FOUND);
     }
-
     const studentId = student.id;
     const createdAt = student.createdAt;
 

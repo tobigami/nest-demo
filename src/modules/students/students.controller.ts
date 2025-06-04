@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
@@ -11,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { CreateStudentDto } from 'src/modules/students/dto/create.students.dto';
 import { UpdateStudentDto } from 'src/modules/students/dto/update.students.dto';
+import { StudentExistsPipe } from 'src/modules/students/pipes/student-exists.pipe';
 import { Student } from 'src/modules/students/student.entity';
 import { StudentsService } from 'src/modules/students/students.service';
 
@@ -30,24 +32,29 @@ export class StudentsController {
 
   @Put(':id')
   updatePutStudent(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
     @Body() body: UpdateStudentDto,
-  ): Promise<Student | null> {
-    return this.studentsService.updatePutStudent(+id, body);
+  ): Promise<Student> {
+    return this.studentsService.updatePutStudent(id, body);
   }
 
   @Patch(':id')
-  updatePatchStudent(@Param('id') id: string, @Body() body: UpdateStudentDto) {
-    return this.studentsService.updatePatchStudent(+id, body);
+  updatePatchStudent(
+    @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
+    @Body() body: UpdateStudentDto,
+  ): Promise<Student> {
+    return this.studentsService.updatePatchStudent(id, body);
   }
 
   @Delete(':id')
-  deleteStudent(@Param('id') id: string) {
-    return this.studentsService.deleteStudent(Number(id));
+  deleteStudent(@Param('id', ParseIntPipe, StudentExistsPipe) id: number) {
+    return this.studentsService.deleteStudent(id);
   }
 
   @Get(':id')
-  getStudentById(@Param('id') id: string): Promise<Student | null> {
-    return this.studentsService.getStudent(Number(id));
+  getStudentById(
+    @Param('id', ParseIntPipe, StudentExistsPipe) id: number,
+  ): Promise<Student | null> {
+    return this.studentsService.getStudent(id);
   }
 }
